@@ -25,6 +25,7 @@ if [[ "$i" -eq 1 ]]; then
 RPC_ADDRESS="--rpc.laddr tcp://0.0.0.0:26657"
 GRPC_ADDRESS="--grpc.address 0.0.0.0:9090"
 PPROF_ADDRESS="--rpc.pprof_laddr 0.0.0.0:6060"
+SEED_MODE="--p2p.seed_mode enable"
 else
 # move these to another port and address, not becuase they will
 # be used there, but instead to prevent them from causing problems
@@ -33,11 +34,11 @@ else
 RPC_ADDRESS="--rpc.laddr tcp://7.7.7.$i:26658"
 GRPC_ADDRESS="--grpc.address 7.7.7.$i:9091"
 PPROF_ADDRESS="--rpc.pprof_laddr 7.7.7.$i:6061"
+SEED_MODE="--p2p.seed_mode disable"
 fi
 LISTEN_ADDRESS="--address tcp://7.7.7.$i:26655"
 P2P_ADDRESS="--p2p.laddr tcp://7.7.7.$i:26656"
 LOG_LEVEL="--log_level error"
-SEED_MODE="--p2p.seed_mode disable"
 ARGS="$GAIA_HOME $LISTEN_ADDRESS $RPC_ADDRESS $GRPC_ADDRESS $LOG_LEVEL $P2P_ADDRESS $PPROF_ADDRESS $SEED_MODE"
 $BIN $ARGS start > /validator$i/logs &
 done
