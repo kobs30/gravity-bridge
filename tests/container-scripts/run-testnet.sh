@@ -42,7 +42,8 @@ $BIN $ARGS start > /validator$i/logs &
 done
 
 # let the cosmos chain settle before starting eth as it
-# consumes a lot of processing power
+# consumes a lot of processing power 
+# ALCHEMY_ID set in github secrets
 sleep 10
 if [[ $TEST_TYPE == *"ARBITRARY_LOGIC"* ]]; then
 bash /gravity/tests/container-scripts/run-eth-fork.sh $ALCHEMY_ID &
